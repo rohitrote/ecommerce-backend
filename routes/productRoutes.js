@@ -3,11 +3,12 @@ const router =express.Router()
 const {createProduct, getProducts, updateProduct, deleteProduct, getProduct} = require("../controllers/productController")
 const validateToken = require("../middleware/validateTokenHandler");
 const { checkAdmin } = require('../middleware/checkAdmin');
+const {uploadProductImages} = require('../middleware/uploadProductImage')
 
 router.use(validateToken);
 
-router.route("/").get(getProducts).post(createProduct);
-router.route("/:id").put(updateProduct).get(checkAdmin,getProduct).delete(checkAdmin,deleteProduct)
+router.route("/").get(getProducts).post(checkAdmin,uploadProductImages.single("product_image"),createProduct);
+router.route("/:id").put(checkAdmin,updateProduct).get(checkAdmin,getProduct).delete(checkAdmin,deleteProduct)
 
 
 module.exports = router;
