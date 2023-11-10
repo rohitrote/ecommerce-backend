@@ -31,11 +31,10 @@ const registerUser = async (req, res) => {
     
       console.log(`User created ${user}`);
       if (user) {
-        res.status(201).json({ _id: user.id, email: user.email });
+        res.status(201).json({Success:true,_id: user.id, email: user.email });
       } else {
         res.status(400).json({Success:false,message:"User data is not valid"});
       }
-      res.json({ message: "Registeration successfull" });
     } catch (error) {
       res.status(500).json({Success:false,message:"Something ewnt wrong"})
     }

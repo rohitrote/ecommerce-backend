@@ -27,7 +27,7 @@ const createProduct = async (req, res) => {
       ratings,
     } = req.body;
 
-    const product_image= req.file.path;
+    // const product_image= req.file.path;
     if (!product_name || !category || !company_name || !price || !description) {
       res.status(400).json({Success:false,message:"All fields are mandatory !"});
     }
@@ -39,11 +39,12 @@ const createProduct = async (req, res) => {
       price,
       description,
       quantity,
-      product_image
+      // product_image
     });
 
     res.status(201).json({ Success: true, data: product });
   } catch (error) {
+    console.log("error",error);
     res.status(500).json({ Success: false, message: "Something went wrong" });
   }
 };
